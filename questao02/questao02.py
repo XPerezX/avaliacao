@@ -3,7 +3,8 @@
 # Foi feito o deploy do sistema para a aws, mas a string de conexão mudou
 # Vocês tem que prover uma nova classe de conexão com o banco e utilizar 
 # algum padrão de projeto para flexibilizar as conexões com o banco
-# o ideal é que a classe principal não saiba em qual banco ele está conectando 
+# o ideal é que a classe principal não saiba em qual banco ele está conectando
+# e que so haja uma instancia de cada classe de conexão ao banco
 
 class Principal:
 	def __init__(self):
