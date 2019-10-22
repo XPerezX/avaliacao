@@ -4,6 +4,24 @@ import unittest
 
 class Funcoes:
 
+	def funcao_a(self, n1):
+
+		if n1 <= 100 and n1>=0:
+
+			if n1 == 0:
+				return n1
+
+			elif n1%2 == 0:
+				calc = (n1 * 2) + 1
+				return calc
+
+			elif n1%2 > 0:
+				calc = (n1 - 2)
+				return calc
+
+		else:
+			return "funcao so calcula ate 100"
+
 
 class TestStringMethods(unittest.TestCase):
 	def test_1(self):

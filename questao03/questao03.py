@@ -3,36 +3,96 @@
 # funcione para os varios setores e filiais da empresa
 # Aplique o padrão composite visando calcular a folha de ponto da empresa
 
-class Funcionario:
-	def __init__(self, nome, salario):
-		self.nome = nome
-		self.salario = salario
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import List
 
-class SetorTi:
+
+##############################################
+class Principal(ABC):
+	def __init__(self):
+
+		@property
+		def parent(self):
+			return self._parent
+
+		@parent.setter
+		def parent(self, parent):
+			self._parent = parent
+
+		def adicionar_funcionario(self, component):
+			pass
+
+		def is_composite(self):
+			return False
+
+
+
+
+
+class Setor(Principal):
 
 	def __init__(self):
 		self.funcionarios = []
 
-	def adiciona_usuario(self, funcionario):
+	def is_composite(self):
+		return True
+
+	def lista (self):
+
+
+		for func in self.funcionarios:
+			name = func.nome()
+
+			print (name)
+
+
+	def adicionar_funcionario(self, funcionario):
 		self.funcionarios.append(funcionario)
 
-	def calcula_folha(self):
+	def Calcular_folha(self):
 		custo = 0.0
 		for funcionario in self.funcionarios:
 			custo += funcionario.salario
-		return custo 
+		return custo
 
-class Principal:
-	def __init__(self):
-		funcionario = Funcionario("joao", 1000)
-		funcionario2 = Funcionario("maria", 1400)
 
-		setor = SetorTi()
-		setor.adiciona_usuario(funcionario)
-		setor.adiciona_usuario(funcionario2)
 
-		print("O custo da Folha de TI é " + str(setor.calcula_folha()))
+
+
+
+class Funcionario(Principal):
+
+	def __init__(self, name, salario):
+		self.name = name
+		self.salario = salario
+
+
+
+	def nome(self):
+		nomess = self.name
+
+		return  nomess
 
 
 if __name__ == '__main__':
-	principal = Principal()
+
+
+	SetorTi = Setor()
+
+	funcionario = Funcionario("João", 1000)
+	funcionario2 = Funcionario("Maria", 1400)
+	SetorTi.adicionar_funcionario(funcionario)
+	SetorTi.adicionar_funcionario(funcionario2)
+
+	print(SetorTi.Calcular_folha())
+
+	SetorAlmoxa = Setor()
+
+	funcionario3 = Funcionario("Josivaldo",1600)
+	funcionario4 = Funcionario("Edivaldo", 2000)
+
+	SetorAlmoxa.adicionar_funcionario(funcionario3)
+	SetorAlmoxa.adicionar_funcionario(funcionario4)
+
+	print(SetorAlmoxa.Calcular_folha())
